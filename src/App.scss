@@ -1,9 +1,12 @@
 // Mixin for tooltip styles with arrow
 @mixin tooltipWithArrow($arrow-direction, $arrow-color) {
-    background-color: white;
+
+    // main tooltip content span styling 
+    background-color: black;
+    color: white;
     width: 220px;
     font-size: 2rem;
-    border: 2px solid black;
+    border: 2px solid white;
     border-radius: 5px;
     padding: 10px;
     position: absolute;
@@ -35,7 +38,7 @@
     }
 }
   
-  // Main SCSS styles
+// Main SCSS styles
 .main-container 
 {
     margin: 0px;
@@ -44,6 +47,7 @@
     display: flex;
     flex-direction: column;
     
+    // heading and instructions container div 
     .instructions-container 
     {
         color: white;
@@ -58,6 +62,7 @@
             padding-bottom: 1rem;
         }
         
+        // .instructions paragraph container
         .instructions {
             width: 400px !important;
             font-size: 1.2rem;
@@ -67,6 +72,7 @@
         }
     }
   
+    // positions button container 
     .btn-container {
         display: flex;
         justify-content: center;
@@ -82,6 +88,7 @@
         }
     }
   
+    // .tooltip-container 
     .tooltip-container {
         border-top: 2px solid rgb(253, 251, 251);
         height: 26rem;
@@ -101,25 +108,25 @@
         }
     
         .tooltip-content-right {
-            @include tooltipWithArrow("right", black);
+            @include tooltipWithArrow("right", white);
             top: 63%;
             left: 56%;
         }
     
         .tooltip-content-left {
-            @include tooltipWithArrow("left", black);
+            @include tooltipWithArrow("left", white);
             top: 63%;
             left: 24%;
         }
     
         .tooltip-content-top {
-            @include tooltipWithArrow("top", black);
+            @include tooltipWithArrow("top", white);
             top: 45%;
             left: 42.5%;
         }
   
         .tooltip-content-bottom {
-            @include tooltipWithArrow("bottom", black);
+            @include tooltipWithArrow("bottom", white);
             top: 71%;
             left: 42.5%;
         }

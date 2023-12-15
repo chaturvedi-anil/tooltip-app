@@ -1,20 +1,25 @@
 import React, {useState} from 'react';
 
 function Tooltip(props) {
+
+    // destructuring props and getting position array from App
     const {positions} = props;
 
-    const [hoverPostion, setHoverPostion] = useState('left');
-    const [visible, setVisible] = useState('visible');
+    // maintaing state for the position and visibility
+    const [hoverPostion, setHoverPostion] = useState('right');
+    const [visible, setVisible] = useState('hidden');
     
+    // function to give the position
     const hanldeGivePostions=(e)=>{
-        console.log("pos : ",e.target.innerHTML);
         setHoverPostion(e.target.innerHTML);
     }
 
+    // changing tooltip content visibility to visible
     const handleMouseOver=()=>{
         setVisible('visible');
     }
      
+    // changing tooltip content visibility to hidden
     const handleMouseOut=()=>{
         setVisible('hidden');
     }   
@@ -39,12 +44,16 @@ function Tooltip(props) {
                 ))}
             </div>
             <div className='tooltip-container'>
+
+                {/* hovering button */}
                 <button 
                     onMouseEnter={handleMouseOver}
                     onMouseLeave={handleMouseOut}
                 >
                     Hover Over Me!
                 </button>
+
+                {/* tooltip text */}
                 <span style={{'visibility': `${visible}`}} className={`tooltip-content-${hoverPostion}`} >
                     I am Hovering in <b>{hoverPostion}</b> position
                 </span>
