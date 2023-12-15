@@ -1,0 +1,128 @@
+// Mixin for tooltip styles with arrow
+@mixin tooltipWithArrow($arrow-direction, $arrow-color) {
+    background-color: white;
+    width: 220px;
+    font-size: 2rem;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    position: absolute;
+  
+    &::after {
+        content: "";
+        position: absolute;
+        border: 10px solid transparent;
+        left: 50%;
+        transform: translateX(-50%);
+    
+        @if $arrow-direction == "top" {
+            border-top-color: $arrow-color;
+            top: calc(100%);
+        } @else if $arrow-direction == "bottom" {
+            border-bottom-color: $arrow-color;
+            top: calc(-20%);
+        } @else if $arrow-direction == "left" {
+            border-left-color: $arrow-color;
+            left: calc(100%);
+            top: 50%;
+            transform: translateY(-150%);
+        } @else if $arrow-direction == "right" {
+            border-right-color: $arrow-color;
+            left: calc(-8%);
+            top: 50%;
+            transform: translateY(-150%);
+        }
+    }
+}
+  
+  // Main SCSS styles
+.main-container 
+{
+    margin: 0px;
+    background-color: chocolate;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    .instructions-container 
+    {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    
+        h1 {
+            border-bottom: 2px solid white;
+            width: 100%;
+            padding-bottom: 1rem;
+        }
+        
+        .instructions {
+            width: 400px !important;
+            font-size: 1.2rem;
+            line-height: 0.5;
+            color: white;
+            text-align: left;
+        }
+    }
+  
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+    
+        button {
+            font-size: 1.3rem;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-transform: capitalize;
+            cursor: pointer;
+        }
+    }
+  
+    .tooltip-container {
+        border-top: 2px solid rgb(253, 251, 251);
+        height: 26rem;
+        text-align: center;
+        padding: 10px;
+    
+        button {
+            font-size: 1.5rem;
+            padding: 0.5rem 1rem;
+            border: 3px dashed black;
+            border-radius: 5px;
+            cursor: pointer;
+            top: 65%;
+            left: 50%;
+            transform: translate(-65%, -50%);
+            position: fixed;
+        }
+    
+        .tooltip-content-right {
+            @include tooltipWithArrow("right", black);
+            top: 63%;
+            left: 56%;
+        }
+    
+        .tooltip-content-left {
+            @include tooltipWithArrow("left", black);
+            top: 63%;
+            left: 24%;
+        }
+    
+        .tooltip-content-top {
+            @include tooltipWithArrow("top", black);
+            top: 45%;
+            left: 42.5%;
+        }
+  
+        .tooltip-content-bottom {
+            @include tooltipWithArrow("bottom", black);
+            top: 71%;
+            left: 42.5%;
+        }
+    }
+}
+  
